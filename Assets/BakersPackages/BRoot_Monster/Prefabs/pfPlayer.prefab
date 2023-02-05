@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6774197103021259723}
   - component: {fileID: 6774197103021259722}
   m_Layer: 0
-  m_Name: Player
+  m_Name: pfPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,8 +57,8 @@ MonoBehaviour:
   _mainForce: 40
   _secondaryForce: 20
   _shootRoots: 1
-  _mainAimFOV: 120
-  _secondaryAimFOV: 180
+  _mainAimFOV: 60
+  _secondaryAimFOV: 120
 --- !u!1001 &6774197102382994262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -958,50 +958,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6774197103021259723}
     m_Modifications:
-    - target: {fileID: 406423364, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 406423364, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
-      propertyPath: m_Positions.Array.data[1].y
-      value: 4.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 406423366, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
-      propertyPath: _type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3129537030935351760, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
-      propertyPath: m_AngularDrag
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 3129537030935351763, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
       propertyPath: m_Name
       value: Blob
       objectReference: {fileID: 0}
     - target: {fileID: 3129537030935351764, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
-      propertyPath: m_BreakForce
-      value: Infinity
-      objectReference: {fileID: 0}
-    - target: {fileID: 3129537030935351764, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
-      propertyPath: m_EnableCollision
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3129537030935351764, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3129537030935351764, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3129537030935351764, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 8461297257800299411}
-    - target: {fileID: 3129537030935351764, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
-      propertyPath: m_AutoConfigureConnectedAnchor
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3129537030935351767, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1046,8 +1010,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1158112160, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b819a80f158bf7c4b80db357f0ab63b1, type: 3}
 --- !u!4 &6774197103793661416 stripped
 Transform:

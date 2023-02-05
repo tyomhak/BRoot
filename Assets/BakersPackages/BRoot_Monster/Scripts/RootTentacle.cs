@@ -10,7 +10,7 @@ public class RootTentacle : MonoBehaviour
 
     [Header("Breaking Config")]
     [SerializeField] float _breakAngleDot = 0;
-    [SerializeField] float _maxRootLength = 15f;
+    [SerializeField] float _maxRootLength = 20f;
     [SerializeField] LayerMask _layerMaskWalls;
 
     [Header("Pull Parent")]
@@ -28,6 +28,8 @@ public class RootTentacle : MonoBehaviour
     private void Awake()
     {
         _target = new GameObject("Root Target").transform;
+
+        MaxLength = _maxRootLength;
 
         _lr = GetComponent<LineRenderer>();
         UpdatePositions();
@@ -54,7 +56,7 @@ public class RootTentacle : MonoBehaviour
     {
         // length check
         var rootLength = Vector3.Distance(_target.position, transform.position);
-        if (rootLength > _maxRootLength)
+        if (rootLength > MaxLength)
         {
             Break();
             return;
@@ -98,7 +100,7 @@ public class RootTentacle : MonoBehaviour
 
     public void PullParent()
     {
-        var pullDir = transform.position - _parentRB.transform.position;
+        var pullDir = _target.position - _parentRB.transform.position;
         _parentRB?.AddForce(pullDir * _pullForce);
     }
 }
