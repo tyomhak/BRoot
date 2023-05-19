@@ -44,6 +44,14 @@ public class PlayerController : MonoBehaviour
 
             if (_shootRoots)
             {
+                {
+                    var rootManag = mainBlob.GetComponent<RootManager>();
+                    if (rootManag.SelectAttachPoint(targetPoint, out Vector3 attachPoint, _mainAimFOV))
+                    {
+                        rootManag.AttachTo(attachPoint);
+                    }
+                }
+
                 foreach(var blob in sideBlobs)
                 {
                     var rootManag = blob.GetComponent<RootManager>();
@@ -51,6 +59,8 @@ public class PlayerController : MonoBehaviour
                     {
                         rootManag.AttachTo(attachPoint);
                     }
+                    else
+                        Debug.Log("NoTargetFound");
                 }
             }
         }

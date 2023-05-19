@@ -54,10 +54,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480da58a81c6c9041a4eff552b4808ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainForce: 40
-  _secondaryForce: 20
+  _mainForce: 80
+  _secondaryForce: 10
   _shootRoots: 1
-  _mainAimFOV: 60
+  _mainAimFOV: 32
   _secondaryAimFOV: 120
 --- !u!1001 &6774197102382994262
 PrefabInstance:

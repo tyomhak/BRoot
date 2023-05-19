@@ -13,11 +13,21 @@ public class RootManager : MonoBehaviour
     [SerializeField] int _numOfRays;
     [SerializeField] LayerMask _layerMaskWalls;
 
+    [SerializeField] bool _minLengthEnabled = true;
+    [SerializeField] float _minRootLength = 1f;
+
+    [SerializeField] bool _minDistanceBetweenRootsEnabled = true;
+    [SerializeField] float _minDistanceBetweenRootEnds = 0f;
     Vector3 _lastAttachedPosition;
+
+    [SerializeField] bool _rootAttachCooldown = true;
+    [SerializeField] float _minTimeBetweenRootAttachements = 0f;
+    float _lastAttachTime = 0f;
 
     private void Awake()
     {
         _lastAttachedPosition = Vector3.zero;
+        _lastAttachTime = Time.time; // questionable choice.
 
         _rootsFree = new();
         _rootsInUse = new();
@@ -85,19 +95,39 @@ public class RootManager : MonoBehaviour
         return resultFound;
     }
 
-    public void AttachTo(Vector3 targetPosition)
+    public void AttachTo(Vector2 targetPosition)
     {
-        if (Vector3.Distance(transform.position, targetPosition) < 1 
-            || Vector3.Distance(targetPosition, _lastAttachedPosition) < 0.3f)
-        {
+        if (!IsValidTarget(targetPosition))
             return;
-        }
 
         if (TryEmployRoot(out RootTentacle root))
         {
             root.SetTarget(targetPosition);
             root.gameObject.SetActive(true);
         }
+    }
+
+    private bool IsValidTarget(Vector2 targetPosition)
+    {
+        // min root length check
+        if (_minLengthEnabled && Vector2.Distance(transform.position, targetPosition) < _minRootLength)
+            return false;
+
+        // min distance between root ends check
+        if (_minDistanceBetweenRootsEnabled && Vector2.Distance(targetPosition, _lastAttachedPosition) < _minDistanceBetweenRootEnds)
+            return false;
+
+        // cooldown check
+        if (_rootAttachCooldown)
+        {
+            var currTime = Time.time;
+            if (currTime - _lastAttachTime < _minTimeBetweenRootAttachements)
+                return false;
+            else
+                _lastAttachTime = currTime;
+        }
+
+        return true;
     }
 
 

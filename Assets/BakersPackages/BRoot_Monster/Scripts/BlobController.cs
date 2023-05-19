@@ -10,6 +10,10 @@ public class BlobController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] float _deadzone;
 
+    [Space]
+    [SerializeField] bool _forceScalingEnabled = true;
+    [SerializeField] float _forceFallOffDistance;
+
     [Header("Raycast config")]
     [SerializeField] float _rayOffset = 1f;
     [SerializeField] LayerMask _layerMask_lineOfSight;
@@ -36,19 +40,20 @@ public class BlobController : MonoBehaviour
         }
     }
 
-    public void AddForce(Vector2 force)
-    {
-        _rb.AddForce(force, ForceMode2D.Force);
-    }
-
     public void SetTarget(Vector3 target, float force)
     {
-        var forceDir = target - transform.position;
+        var vectToTarget = target - transform.position;
+        var distToTarget = vectToTarget.magnitude;
 
-        if (forceDir.magnitude < _deadzone)
+        if (distToTarget < _deadzone)
             return;
 
-        _rb.AddForce(forceDir * force, ForceMode2D.Force);
+        if (_forceScalingEnabled && distToTarget < _forceFallOffDistance)
+        {
+            force = force * (distToTarget) / _forceFallOffDistance;
+        }
+
+        _rb.AddForce(vectToTarget.normalized * force, ForceMode2D.Force);
     }
 
     public bool LineOfSight(Vector3 target)

@@ -140,8 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987f191d906b7f348b856302338e96ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deadzone: 0.5
-  _rayOffset: 2
+  _deadzone: 1
+  _forceScalingEnabled: 1
+  _forceFallOffDistance: 3
+  _rayOffset: 0.21
   _layerMask_lineOfSight:
     serializedVersion: 2
     m_Bits: 65
@@ -159,10 +161,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tentaclePF: {fileID: 2187722813278506104, guid: e66daa0904934d64fa7f17cd38bc3ffd, type: 3}
   _initialCount: 3
-  _numOfRays: 3
+  _numOfRays: 7
   _layerMaskWalls:
     serializedVersion: 2
     m_Bits: 1
+  _minLengthEnabled: 1
+  _minRootLength: 0.4
+  _minDistanceBetweenRootsEnabled: 1
+  _minDistanceBetweenRootEnds: 0.3
+  _rootAttachCooldown: 0
+  _minTimeBetweenRootAttachements: 0.2
 --- !u!231 &3129537030935351764
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -190,7 +198,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3129537030935351763}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3981f4b1969c7d34ba5f977d41044406, type: 3}
   m_Name: 
